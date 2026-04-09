@@ -15,9 +15,9 @@
             min-height: 100vh; color: white;
         }
 
-        /* Menu Onglets */
+        /* Menu Onglets optimisé */
         .tabs-container {
-            display: flex; gap: 10px; margin-bottom: 20px;
+            display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center;
         }
         .tab-button {
             background: rgba(255, 255, 255, 0.05);
@@ -47,15 +47,19 @@
         .input-group { margin-bottom: 30px; text-align: left; }
         .label-row { display: flex; align-items: center; margin-bottom: 12px; font-size: 0.95rem; }
         .value-display { color: #00FFFF; font-weight: bold; margin-left: 8px; }
+        
         input[type=range] { width: 100%; -webkit-appearance: none; background: rgba(255, 255, 255, 0.15); height: 5px; border-radius: 5px; outline: none; }
         input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; background: #00FFFF; border-radius: 50%; cursor: pointer; box-shadow: 0 0 15px rgba(0, 255, 255, 0.6); }
+        
         .result-box { margin-top: 20px; padding: 25px; background: linear-gradient(135deg, #4A148C 0%, #7B1FA2 100%); border-radius: 20px; box-shadow: 0 10px 25px rgba(123, 31, 162, 0.4); }
         .result-label { font-size: 0.9rem; opacity: 0.9; margin-bottom: 8px; }
         .result-value { font-size: 2.8rem; font-weight: 700; color: #00FFFF; }
+        
         .boost-section { margin-top: 30px; text-align: left; font-size: 0.85rem; line-height: 1.6; }
         .boost-title { color: #00FFFF; font-weight: bold; margin-bottom: 12px; display: block; }
         .boost-item { margin-bottom: 6px; display: flex; align-items: center; }
         .disclaimer { font-size: 0.75rem; font-style: italic; opacity: 0.6; margin-top: 5px; display: block; }
+        
         .btn-calendly { display: inline-block; margin-top: 35px; padding: 18px 30px; background: #00FFFF; color: #000; text-decoration: none; border-radius: 50px; font-weight: 800; font-size: 0.85rem; transition: all 0.3s ease; text-transform: uppercase; }
     </style>
 </head>
@@ -64,6 +68,7 @@
 <div class="tabs-container">
     <a href="index.html" class="tab-button active">Standard</a>
     <a href="tjm-vers-net.html" class="tab-button">TJM ➔ Net</a>
+    <a href="objectif-salaire.html" class="tab-button">Objectif Salaire</a>
 </div>
 
 <div class="glass-panel">
@@ -107,6 +112,7 @@ function calculer() {
     const gestion = ca * 0.05;
     const enveloppeOptimisation = 300; 
     
+    // Calcul incluant les 300€ d'optimisation (frais + TR)
     const masseSalariale = ca - gestion - enveloppeOptimisation;
     const salaireNet = (masseSalariale / 1.45) * 0.78;
     const totalFinal = salaireNet + enveloppeOptimisation;
