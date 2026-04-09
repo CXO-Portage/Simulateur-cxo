@@ -54,11 +54,16 @@
         .result-value { font-size: 2.5rem; font-weight: 700; color: #00FFFF; }
 
         .details-section { margin-top: 25px; text-align: left; font-size: 0.8rem; line-height: 1.5; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; }
-        .detail-row { display: flex; justify-content: space-between; margin-bottom: 6px; }
+        .detail-row { display: flex; justify-content: space-between; margin-bottom: 8px; }
         .detail-label { opacity: 0.7; }
         .detail-val { font-weight: bold; color: #00FFFF; }
 
-        .btn-calendly { display: inline-block; margin-top: 25px; padding: 15px 25px; background: #00FFFF; color: #000; text-decoration: none; border-radius: 50px; font-weight: 800; font-size: 0.8rem; text-transform: uppercase; }
+        /* Section Avantages Aurélie */
+        .boost-section { margin-top: 15px; text-align: left; font-size: 0.85rem; line-height: 1.6; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; }
+        .boost-title { color: #00FFFF; font-weight: bold; margin-bottom: 10px; display: block; }
+        .boost-item { margin-bottom: 4px; display: flex; align-items: center; }
+
+        .btn-calendly { display: inline-block; margin-top: 25px; padding: 18px 30px; background: #00FFFF; color: #000; text-decoration: none; border-radius: 50px; font-weight: 800; font-size: 0.85rem; transition: all 0.3s ease; text-transform: uppercase; }
     </style>
 </head>
 <body>
@@ -90,13 +95,16 @@
 
         <div class="details-section">
             <div class="detail-row">
-                <span class="detail-label">Chiffre d'Affaires HT :</span>
-                <span class="detail-val" id="det-ca">-- €</span>
+                <span class="detail-label">CA HT nécessaire : <span id="det-ca" style="color:#00FFFF">--</span> €</span>
+                <span class="detail-label">Gestion (5%) : <span id="det-gestion" style="color:#00FFFF">--</span> €</span>
             </div>
-            <div class="detail-row">
-                <span class="detail-label">Dont gestion CXO :</span>
-                <span class="detail-val" id="det-gestion">-- €</span>
-            </div>
+        </div>
+
+        <div class="boost-section">
+            <span class="boost-title">✨ Le conseil d'Aurélie :</span>
+            <div class="boost-item">✓ Intégration de vos Frais Pro</div>
+            <div class="boost-item">✓ Épargne Salariale PEE / PERCO</div>
+            <div class="boost-item">✓ Accès complet aux Tickets Restau</div>
         </div>
 
         <a href="https://calendly.com/aurelie-dubois-celexio/cxo-portage" class="btn-calendly">VÉRIFIER LA FAISABILITÉ ✨</a>
@@ -110,10 +118,10 @@ function calculer() {
     document.getElementById('net-souhaite-val').innerText = netVoulu.toLocaleString('fr-FR');
     document.getElementById('jours-val').innerText = jours;
 
-    // Calcul inverse basé sur tes ratios (1.45 patronal et 0.78 salarial)
+    // Calcul inverse :
     // Salaire Net / 0.78 = Salaire Brut
     // Salaire Brut * 1.45 = Masse Salariale
-    // Masse Salariale / 0.95 (pour inclure les 5% de gestion) = CA total
+    // Masse Salariale / 0.95 = CA total
     
     const brutNecessaire = netVoulu / 0.78;
     const masseSalariale = brutNecessaire * 1.45;
@@ -121,8 +129,8 @@ function calculer() {
     const tjmNecessaire = caTotal / jours;
 
     document.getElementById('tjm-necessaire').innerText = Math.round(tjmNecessaire) + " €";
-    document.getElementById('det-ca').innerText = Math.round(caTotal).toLocaleString('fr-FR') + " €";
-    document.getElementById('det-gestion').innerText = Math.round(caTotal * 0.05).toLocaleString('fr-FR') + " €";
+    document.getElementById('det-ca').innerText = Math.round(caTotal).toLocaleString('fr-FR');
+    document.getElementById('det-gestion').innerText = Math.round(caTotal * 0.05).toLocaleString('fr-FR');
 }
 calculer();
 </script>
